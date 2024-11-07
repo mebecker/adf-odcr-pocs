@@ -20,7 +20,7 @@
 						"notebookPath": "@pipeline().globalParameters.notebookPath",
 						"workspaceUrl": "@pipeline().globalParameters.workspaceUrl",
 						"instancePoolId": "@pipeline().globalParameters.odcrInstancePoolId",
-						"workspaceResourceId": "@pipeline().globalParameters.workspaceId",
+						"workspaceResourceId": "@pipeline().globalParameters.workspaceResourceId",
 						"acceptedErrorMessages": "@pipeline().parameters.acceptedErrorMessages"
 					}
 				}
@@ -34,9 +34,6 @@
 					"INSTANCE_POOL_MAX_CAPACITY_REACHED"
 				]
 			}
-		},
-		"folder": {
-			"name": "ODCR Demo"
 		},
 		"annotations": []
 	}

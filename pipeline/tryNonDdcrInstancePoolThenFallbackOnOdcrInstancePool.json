@@ -21,7 +21,7 @@
 						"workspaceUrl": "@pipeline().globalParameters.workspaceUrl",
 						"initialInstancePoolId": "@pipeline().globalParameters.nonOdcrInstancePoolId",
 						"failoverInstancePoolId": "@pipeline().globalParameters.odcrInstancePoolId",
-						"workspaceResourceId": "@pipeline().globalParameters.workspaceId",
+						"workspaceResourceId": "@pipeline().globalParameters.workspaceResourceId",
 						"acceptedErrorMessages": {
 							"value": "@pipeline().parameters.acceptedErrorMessages",
 							"type": "Expression"
@@ -48,7 +48,7 @@
 						"workspaceUrl": "@pipeline().globalParameters.workspaceUrl",
 						"initialInstancePoolId": "@pipeline().globalParameters.nonOdcrInstancePoolId",
 						"failoverInstancePoolId": "@pipeline().globalParameters.odcrInstancePoolId",
-						"workspaceResourceId": "@pipeline().globalParameters.workspaceId",
+						"workspaceResourceId": "@pipeline().globalParameters.workspaceResourceId",
 						"acceptedErrorMessages": {
 							"value": "@pipeline().parameters.acceptedErrorMessages",
 							"type": "Expression"
@@ -70,9 +70,6 @@
 			"failoverConditionSatisfied": {
 				"type": "Boolean"
 			}
-		},
-		"folder": {
-			"name": "ODCR Demo"
 		},
 		"annotations": []
 	}

@@ -1,0 +1,33 @@
+{
+	"name": "adf-mibecke-temp-2",
+	"properties": {
+		"globalParameters": {
+			"workspaceUrl": {
+				"type": "string",
+				"value": "<YOUR-DATABRICKS-WORKSPACE-URL>"
+			},
+			"workspaceResourceId": {
+				"type": "string",
+				"value": "<YOUR-DATABRICKS-WORKSPACE-RESOURCE-ID>"
+			},			
+			"odcrInstancePoolId": {
+				"type": "string",
+				"value": "<YOUR-INSTANCE-POOL-ID>"
+			},
+			"nonOdcrInstancePoolId": {
+				"type": "string",
+				"value": "<YOUR-INSTANCE-POOL-ID>"
+			},
+			"notebookPath": {
+				"type": "string",
+				"value": "<PATH-TO-YOUR-NOTEBOOK>"
+			}
+		}
+	},
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1fea5f80-9bfb-4b83-8642-f8d30ca8eb68",
+		"tenantId": "228df7ad-dab9-4bb5-826d-6b4efd786150"
+	}
+}
