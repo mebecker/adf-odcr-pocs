@@ -1,0 +1,29 @@
+{
+	"name": "DatabricksJobClusterLinkedService",
+	"properties": {
+		"parameters": {
+			"workspaceUrl": {
+				"type": "string"
+			},
+			"workspaceResourceId": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "@linkedService().workspaceUrl",
+			"authentication": "MSI",
+			"workspaceResourceId": "@linkedService().workspaceResourceId",
+			"newClusterNodeType": "Standard_E80ids_v4",
+			"newClusterNumOfWorker": "1",
+			"newClusterVersion": "15.4.x-scala2.12",
+			"clusterOption": "Fixed",
+			"newClusterInitScripts": []
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

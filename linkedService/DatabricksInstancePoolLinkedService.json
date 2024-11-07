@@ -1,0 +1,29 @@
+{
+	"name": "DatabricksInstancePoolLinkedService",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"workspaceUrl": {
+				"type": "string"
+			},
+			"instancePoolId": {
+				"type": "string"
+			},
+			"workspaceResourceId": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "@linkedService().workspaceUrl",
+			"authentication": "MSI",
+			"workspaceResourceId": "@linkedService().workspaceResourceId",
+			"instancePoolId": "@linkedService().instancePoolId",
+			"newClusterNumOfWorker": "1",
+			"newClusterVersion": "15.4.x-scala2.12",
+			"newClusterInitScripts": [],
+			"clusterOption": "Fixed"
+		}
+	}
+}

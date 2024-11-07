@@ -1,0 +1,43 @@
+{
+	"name": "tryJobPoolThenFallbackOnOdcrInstancePool",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SwitchLinkedServiceOnCapacityFailure",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"notebookPath": "@pipeline().globalParameters.notebookPath",
+						"workspaceUrl": "@pipeline().globalParameters.workspaceUrl",
+						"instancePoolId": "@pipeline().globalParameters.odcrInstancePoolId",
+						"workspaceResourceId": "@pipeline().globalParameters.workspaceId",
+						"acceptedErrorMessages": "@pipeline().parameters.acceptedErrorMessages"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"acceptedErrorMessages": {
+				"type": "string",
+				"defaultValue": [
+					"AZURE_QUOTA_EXCEEDED_EXCEPTION",
+					"INSTANCE_POOL_MAX_CAPACITY_REACHED"
+				]
+			}
+		},
+		"folder": {
+			"name": "ODCR Demo"
+		},
+		"annotations": []
+	}
+}

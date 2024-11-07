@@ -1,0 +1,79 @@
+{
+	"name": "tryNonDdcrInstancePoolThenFallbackOnOdcrInstancePool",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SwitchInstancePoolOnCapacityFailure",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"notebookPath": "@pipeline().globalParameters.notebookPath",
+						"workspaceUrl": "@pipeline().globalParameters.workspaceUrl",
+						"initialInstancePoolId": "@pipeline().globalParameters.nonOdcrInstancePoolId",
+						"failoverInstancePoolId": "@pipeline().globalParameters.odcrInstancePoolId",
+						"workspaceResourceId": "@pipeline().globalParameters.workspaceId",
+						"acceptedErrorMessages": {
+							"value": "@pipeline().parameters.acceptedErrorMessages",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Execute Pipeline2",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SwitchInstancePoolOnCapacityFailure",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"notebookPath": "@pipeline().globalParameters.notebookPath",
+						"workspaceUrl": "@pipeline().globalParameters.workspaceUrl",
+						"initialInstancePoolId": "@pipeline().globalParameters.nonOdcrInstancePoolId",
+						"failoverInstancePoolId": "@pipeline().globalParameters.odcrInstancePoolId",
+						"workspaceResourceId": "@pipeline().globalParameters.workspaceId",
+						"acceptedErrorMessages": {
+							"value": "@pipeline().parameters.acceptedErrorMessages",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"acceptedErrorMessages": {
+				"type": "array",
+				"defaultValue": [
+					"AZURE_QUOTA_EXCEEDED_EXCEPTION",
+					"INSTANCE_POOL_MAX_CAPACITY_REACHED"
+				]
+			}
+		},
+		"variables": {
+			"failoverConditionSatisfied": {
+				"type": "Boolean"
+			}
+		},
+		"folder": {
+			"name": "ODCR Demo"
+		},
+		"annotations": []
+	}
+}

@@ -1,0 +1,225 @@
+{
+	"name": "SwitchLinkedServiceOnCapacityFailure",
+	"properties": {
+		"activities": [
+			{
+				"name": "InitialNotebookRunAttempt",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().parameters.notebookPath",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "DatabricksJobClusterLinkedService",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"workspaceUrl": {
+							"value": "@pipeline().parameters.workspaceUrl",
+							"type": "Expression"
+						},
+						"workspaceResourceId": {
+							"value": "@pipeline().parameters.workspaceResourceId",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CheckAcceptableErrorStrings",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "InitialNotebookRunAttempt",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.acceptedErrorMessages",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Check if failure capacity related",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@contains(activity('InitialNotebookRunAttempt').output.runError, item())",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "FailoverNotebookRunAttempt",
+										"type": "DatabricksNotebook",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"notebookPath": {
+												"value": "@pipeline().parameters.notebookPath",
+												"type": "Expression"
+											}
+										},
+										"linkedServiceName": {
+											"referenceName": "DatabricksInstancePoolLinkedService",
+											"type": "LinkedServiceReference",
+											"parameters": {
+												"workspaceUrl": {
+													"value": "@pipeline().parameters.workspaceUrl",
+													"type": "Expression"
+												},
+												"instancePoolId": {
+													"value": "@pipeline().parameters.instancePoolId",
+													"type": "Expression"
+												},
+												"workspaceResourceId": {
+													"value": "@pipeline().parameters.workspaceResourceId",
+													"type": "Expression"
+												}
+											}
+										}
+									},
+									{
+										"name": "setFailoverConditionSatisfied",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "failoverConditionSatisfied",
+											"value": true
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "FailIfFailoverDidntHappen",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "CheckAcceptableErrorStrings",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@not(variables('failoverConditionSatisfied'))",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "Fail1",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": "ERROR_NOT_CAPACITY_RELATED",
+								"errorCode": "123"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"notebookPath": {
+				"type": "string"
+			},
+			"workspaceUrl": {
+				"type": "string"
+			},
+			"instancePoolId": {
+				"type": "string"
+			},
+			"workspaceResourceId": {
+				"type": "string"
+			},
+			"acceptedErrorMessages": {
+				"type": "array"
+			}
+		},
+		"variables": {
+			"exitLoop": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"iterationCount": {
+				"type": "String",
+				"defaultValue": "1"
+			},
+			"iterationCountInternal": {
+				"type": "String",
+				"defaultValue": "1"
+			},
+			"activeWorkspaceUrl": {
+				"type": "String"
+			},
+			"activeInstancePoolId": {
+				"type": "String"
+			},
+			"failoverWorkpaceUrl": {
+				"type": "String"
+			},
+			"failoverInstancePoolId": {
+				"type": "String"
+			},
+			"activeWorkspaceResourceId": {
+				"type": "String"
+			},
+			"failoverWorkspaceResourceId": {
+				"type": "String"
+			},
+			"maxIterations": {
+				"type": "Integer",
+				"defaultValue": 2
+			},
+			"ErrorMessages": {
+				"type": "Array"
+			},
+			"FoundString": {
+				"type": "Boolean"
+			},
+			"failoverConditionSatisfied": {
+				"type": "Boolean"
+			}
+		},
+		"folder": {
+			"name": "Helpers"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-09-26T16:52:12Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

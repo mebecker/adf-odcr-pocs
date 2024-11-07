@@ -1,0 +1,10 @@
+{
+	"name": "AzureSynapseAnalytics432",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/7a074df0-d2da-4def-92f3-cef1819caf9e/resourceGroups/rg-synapse/providers/Microsoft.Synapse/workspaces/syn-mibecke-cus-01",
+		"groupId": "sql",
+		"fqdns": [
+			"syn-mibecke-cus-01.sql.azuresynapse.net"
+		]
+	}
+}
