@@ -1,5 +1,13 @@
 {
 	"name": "adf-mibecke-temp",
+	"properties": {
+		"globalParameters": {
+			"notebookPath": {
+				"type": "string",
+				"value": "123"
+			}
+		}
+	},
 	"location": "centralus",
 	"identity": {
 		"type": "SystemAssigned",
