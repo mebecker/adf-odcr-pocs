@@ -20,7 +20,7 @@
 						"notebookPath": "@pipeline().globalParameters.notebookPath",
 						"workspaceUrl": "@pipeline().globalParameters.workspaceUrl",
 						"instancePoolId": "@pipeline().globalParameters.odcrInstancePoolId",
-						"workspaceResourceId": "@pipeline().globalParameters.workspaceId",
+						"workspaceResourceId": "@pipeline().globalParameters.workspaceResourceId",
 						"acceptedErrorMessages": "@pipeline().parameters.acceptedErrorMessages"
 					}
 				}
@@ -31,12 +31,10 @@
 				"type": "string",
 				"defaultValue": [
 					"AZURE_QUOTA_EXCEEDED_EXCEPTION",
-					"INSTANCE_POOL_MAX_CAPACITY_REACHED"
+					"INSTANCE_POOL_MAX_CAPACITY_REACHED",
+					"CLOUD_PROVIDER_RESOURCE_STOCKOUT"
 				]
 			}
-		},
-		"folder": {
-			"name": "ODCR Demo"
 		},
 		"annotations": []
 	}

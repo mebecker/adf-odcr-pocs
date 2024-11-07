@@ -21,7 +21,7 @@
 						"workspaceUrl": "@pipeline().globalParameters.workspaceUrl",
 						"initialInstancePoolId": "@pipeline().globalParameters.nonOdcrInstancePoolId",
 						"failoverInstancePoolId": "@pipeline().globalParameters.odcrInstancePoolId",
-						"workspaceResourceId": "@pipeline().globalParameters.workspaceId",
+						"workspaceResourceId": "@pipeline().globalParameters.workspaceResourceId",
 						"acceptedErrorMessages": {
 							"value": "@pipeline().parameters.acceptedErrorMessages",
 							"type": "Expression"
@@ -48,7 +48,7 @@
 						"workspaceUrl": "@pipeline().globalParameters.workspaceUrl",
 						"initialInstancePoolId": "@pipeline().globalParameters.nonOdcrInstancePoolId",
 						"failoverInstancePoolId": "@pipeline().globalParameters.odcrInstancePoolId",
-						"workspaceResourceId": "@pipeline().globalParameters.workspaceId",
+						"workspaceResourceId": "@pipeline().globalParameters.workspaceResourceId",
 						"acceptedErrorMessages": {
 							"value": "@pipeline().parameters.acceptedErrorMessages",
 							"type": "Expression"
@@ -62,7 +62,8 @@
 				"type": "array",
 				"defaultValue": [
 					"AZURE_QUOTA_EXCEEDED_EXCEPTION",
-					"INSTANCE_POOL_MAX_CAPACITY_REACHED"
+					"INSTANCE_POOL_MAX_CAPACITY_REACHED",
+					"CLOUD_PROVIDER_RESOURCE_STOCKOUT"
 				]
 			}
 		},
@@ -70,9 +71,6 @@
 			"failoverConditionSatisfied": {
 				"type": "Boolean"
 			}
-		},
-		"folder": {
-			"name": "ODCR Demo"
 		},
 		"annotations": []
 	}

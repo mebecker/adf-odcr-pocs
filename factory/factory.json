@@ -1,0 +1,33 @@
+{
+	"name": "<YOUR-FACTORY-NAME>",
+	"properties": {
+		"globalParameters": {
+			"workspaceUrl": {
+				"type": "string",
+				"value": "<YOUR-DATABRICKS-WORKSPACE-URL>"
+			},
+			"workspaceResourceId": {
+				"type": "string",
+				"value": "<YOUR-DATABRICKS-WORKSPACE-RESOURCE-ID>"
+			},			
+			"odcrInstancePoolId": {
+				"type": "string",
+				"value": "<YOUR-INSTANCE-POOL-ID>"
+			},
+			"nonOdcrInstancePoolId": {
+				"type": "string",
+				"value": "<YOUR-INSTANCE-POOL-ID>"
+			},
+			"notebookPath": {
+				"type": "string",
+				"value": "<PATH-TO-YOUR-NOTEBOOK>"
+			}
+		}
+	},
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "<YOUR-PRINCIPAL-ID>",
+		"tenantId": "<YOUR-TENANT-ID>"
+	}
+}
