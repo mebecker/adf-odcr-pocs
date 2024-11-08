@@ -16,7 +16,7 @@
 			},
 			"nonOdcrInstancePoolId": {
 				"type": "string",
-				"value": "<YOUR-INSTANCE-POOL-ID>"
+				"value": "1105-210744-foray3-pool-306c6t24"
 			},
 			"notebookPath": {
 				"type": "string",
