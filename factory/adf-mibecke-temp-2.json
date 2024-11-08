@@ -12,7 +12,7 @@
 			},
 			"odcrInstancePoolId": {
 				"type": "string",
-				"value": "<YOUR-INSTANCE-POOL-ID>"
+				"value": "1105-210710-awing2-pool-bv7hvz4s"
 			},
 			"nonOdcrInstancePoolId": {
 				"type": "string",
