@@ -4,12 +4,12 @@
 		"globalParameters": {
 			"workspaceUrl": {
 				"type": "string",
-				"value": "<YOUR-DATABRICKS-WORKSPACE-URL>"
+				"value": "https://adb-3001519857218975.15.azuredatabricks.net/"
 			},
 			"workspaceResourceId": {
 				"type": "string",
 				"value": "<YOUR-DATABRICKS-WORKSPACE-RESOURCE-ID>"
-			},			
+			},
 			"odcrInstancePoolId": {
 				"type": "string",
 				"value": "<YOUR-INSTANCE-POOL-ID>"
