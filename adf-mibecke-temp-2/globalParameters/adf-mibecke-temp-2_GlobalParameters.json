@@ -1,22 +1,22 @@
 {
 	"workspaceUrl": {
 		"type": "string",
-		"value": "<YOUR-DATABRICKS-WORKSPACE-URL>"
+		"value": "https://adb-3001519857218975.15.azuredatabricks.net/"
 	},
 	"workspaceResourceId": {
 		"type": "string",
-		"value": "<YOUR-DATABRICKS-WORKSPACE-RESOURCE-ID>"
+		"value": "/subscriptions/7a074df0-d2da-4def-92f3-cef1819caf9e/resourceGroups/rg-data/providers/Microsoft.Databricks/workspaces/adb-cus-01"
 	},
 	"odcrInstancePoolId": {
 		"type": "string",
-		"value": "<YOUR-INSTANCE-POOL-ID>"
+		"value": "1105-210710-awing2-pool-bv7hvz4s"
 	},
 	"nonOdcrInstancePoolId": {
 		"type": "string",
-		"value": "<YOUR-INSTANCE-POOL-ID>"
+		"value": "1105-210744-foray3-pool-306c6t24"
 	},
 	"notebookPath": {
 		"type": "string",
-		"value": "<PATH-TO-YOUR-NOTEBOOK>"
+		"value": "/Workspace/Users/admin@mngenvmcap469791.onmicrosoft.com/job2"
 	}
 }
